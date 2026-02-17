@@ -2,11 +2,49 @@ import { useContext, useState } from "react";
 import { ChatContext } from "../pages/ChatContext";
 
 const Dashboard = () => {
-  const { currentUser, groups, activegroup, setActivegroup } =
+  const { currentUser, groups, activegroup, setActivegroup, setGroups, setCurrentUser , } =
     useContext(ChatContext);
   const selectedGroup = groups.find((group) => group.id === activegroup);
 
   const [message, setMessage] = useState("");
+
+  const handleSendMessage = () => {
+  if (!message.trim()) return;
+
+  const updatedGroups = groups.map((group) => {
+    if (group.id === activegroup) {
+      return {
+        ...group,
+        messages: [...group.messages, message]
+      };
+    }
+    return group;
+
+  });
+  setGroups(updatedGroups);
+  setMessage("");
+};
+
+//  const handleNewGroup = () => {
+//     const groupName = prompt("Enter the group name.")
+
+//     if(!groupName || groupName.trim() === "")
+//       return ;
+
+
+//     const newGroup = {
+//       id: Date.now(),
+//       name: groupName,
+//       message:[]
+//     }
+
+//     setGroups([...groups,newGroup])
+//     setActivegroup(newGroup.id)
+//   }
+
+  const handleLogout =()=>{
+    setCurrentUser(null)
+  }
 
   return (
     <div className="h-screen flex bg-gray-100">
@@ -17,7 +55,7 @@ const Dashboard = () => {
           + New Group
         </button>
 
-        <button className="w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+        <button onClick={handleLogout}  className="w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
           Logout
         </button>
 
@@ -65,7 +103,7 @@ const Dashboard = () => {
             className="flex-1 p-3 rounded-lg border outline-none"
           />
 
-          <button className="px-6 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+          <button onClick={handleSendMessage} className="px-6 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
             Send
           </button>
         </div>

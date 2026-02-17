@@ -23,7 +23,7 @@ const Login = () => {
 
     <div className="bg-white/20 backdrop-blur-lg shadow-2xl rounded-2xl p-10 w-112.5 text-center">
 
-      <h1 className="text-4xl font-bold text-white mb-8">
+      <h1 className="text-4xl font-bold text-white mb-8 ">
         Select User
       </h1> 
       <div className="grid grid-cols-2 gap-6 mb-8">

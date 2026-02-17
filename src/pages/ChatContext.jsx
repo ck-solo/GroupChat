@@ -7,7 +7,7 @@ const ChatProvider = ({children}) => {
 
     const [groups, setGroups] = useState([
         {id:1, name:"General", members: 4, messages : []},
-        {id:2, name:"General", members: 2, messages : []}
+        {id:2, name:"Private", members: 2, messages : []}
     ])
 
     const [activegroup, setActivegroup] = useState(1);
