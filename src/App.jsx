@@ -6,7 +6,7 @@ import Login from './components/Login'
 function App() {
   const {currentUser} = useContext(ChatContext)
   return (
-    <div>
+    <div className="w-full h-full">
       {currentUser ? <Dashboard /> : <Login />}
     </div>
   )
